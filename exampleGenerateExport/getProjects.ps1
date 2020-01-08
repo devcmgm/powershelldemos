@@ -1,12 +1,12 @@
 
 if ($args.Count -gt 3) {
-  $SCCBaseURL = $args[0]
+  $SSCBaseURL = $args[0]
   $token = $args[1]
   $AppName = $args[2]
   $AppVersion = $args[3]
 
   $params = @{
-    Uri     = "$SCCBaseURL/api/v1/projectVersions?start=0&limit=200&fulltextsearch=false&includeInactive=false&myAssignedIssues=false&onlyIfHasIssues=false"
+    Uri     = "$SSCBaseURL/api/v1/projectVersions?start=0&limit=200&fulltextsearch=false&includeInactive=false&myAssignedIssues=false&onlyIfHasIssues=false"
     Headers = @{ 'Authorization' = "FortifyToken $token" }
     Method  = 'GET'
   }

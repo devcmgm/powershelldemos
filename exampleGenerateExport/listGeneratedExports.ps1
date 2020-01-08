@@ -1,15 +1,15 @@
 
 if ($args.Count -gt 3) {
-  $SCCBaseURL = $args[0]
+  $SSCBaseURL = $args[0]
   $token = $args[1]
   $AppName = $args[2]
   $AppVersion = $args[3]
 
-  $projectVersion = .\getPRojects.ps1 $SCCBaseURL ZjgwMzAxZjEtYzhjYi00YmNiLWI5ZmEtNmExMmM0NmYzZWVj $AppName $AppVersion
+  $projectVersionId = .\getPRojects.ps1 $SSCBaseURL ZjgwMzAxZjEtYzhjYi00YmNiLWI5ZmEtNmExMmM0NmYzZWVj $AppName $AppVersion
 
   #"" DEBUG" $projectVersion
 
-  $Uri = "$SCCBaseURL/api/v1/dataExports?start=0&limit=200"
+  $Uri = "$SSCBaseURL/api/v1/dataExports?start=0&limit=200"
   # "DEBUG: $Uri"
   
   $params = @{
@@ -21,8 +21,17 @@ if ($args.Count -gt 3) {
   $results = Invoke-RestMethod @params
   # "DEBUG: $results.data"
   # "DEBUG: --------------------------------------------------"
+
+  $checkname = "$AppName - $AppVersion"
+
+  # DEBUG $checkname
+
   ForEach ($export in $results.data) {
-    "{0}" -f  $export.id
+    $checkname = "$AppName - $AppVersion"
+    if ( $export.appVersionName -eq $checkname ) { 
+      "{0}" -f  $export.id
+      # DEBUG: $export.appVersionName
+    }
   }
 
 }

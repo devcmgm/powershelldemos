@@ -10,7 +10,7 @@ if ($args.Count -gt 3) {
     $timestamp = Get-Date -Format o | ForEach-Object { $_ -replace ":", "." }
     $outputfilename = "SSCExport_$timestamp.csv" 
 
-    $reportid = .\listGeneratedExports.ps1 $SCCBaseURL ZjgwMzAxZjEtYzhjYi00YmNiLWI5ZmEtNmExMmM0NmYzZWVj $AppName $AppVersion                        
+    $reportid = .\listGeneratedExports.ps1 $SCCBaseURL $token $AppName $AppVersion                        
 
     # "DEBUG $reportid"
 
