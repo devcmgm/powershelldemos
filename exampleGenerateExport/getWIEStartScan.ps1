@@ -5,10 +5,14 @@ if ($args.Count -gt 3) {
   $AppName = $args[2]
   $AppVersion = $args[3]
 
+  $jsonData = '{ "fileTokenType": "REPORT_FILE" }'  
+
   $params = @{
-    Uri     = "$WIEBaseURL/api/v1/projectVersions"
+    Uri     = "$WIEBaseURL/api/v1/scans"
     Headers = @{ 'Authorization' = "FortifyToken $token" }
-    Method  = 'GET'
+    Method  = 'POST'
+    Body        = $jsonData
+    ContentType = 'application/json'
   }
 
   
